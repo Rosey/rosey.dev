@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>rosey.dev</title>
+        <meta name="description" content="Rose Robertson, JS Developer.">
+        <meta name="author" content="Rose Robertson, rose@r.osey.me">
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:900" rel="stylesheet">
+        <style>
+            ::selection {
+                background-color: #44475a;
+            }
+
+            @keyframes textDisplay {
+                from {
+                    transform: scale(0) translateY(40px) rotate(-205deg);
+                }
+
+                to {
+                    transform: scale(1) translateY(0px) rotate(0deg);
+                }
+            }
+
+            @keyframes fadeInText {
+                from {
+                    transform: scale(1) translateY(0);
+                    opacity: 0;
+                }
+
+                to {
+                    transform: scale(1) translateY(0px);
+                    opacity: 1;
+                }
+            }
+
+            body {
+                background-color: #282a36;
+            }
+
+            div {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                display: flex;
+                align-items: center;
+            }
+
+            h1 {
+                font-family: 'Catamaran', sans-serif;
+                font-weight: 900;
+                font-size: 200px;
+                text-transform: uppercase;
+                text-align: center;
+                letter-spacing: -15px;
+                margin: auto;
+            }
+
+            @media only screen and (max-width: 768px) {
+                h1 {
+                  font-size: 150px;
+                  letter-spacing: -8px;
+                }
+            }
+
+            @media only screen and (max-width: 550px) {
+                h1 {
+                  font-size: 125px;
+                }
+            }
+
+            @media only screen and (max-width: 450px) {
+                h1 {
+                  font-size: 100px;
+                }
+            }
+
+            @media only screen and (max-width: 375px) {
+                h1 {
+                  font-size: 75px;
+                }
+            }
+
+
+            @media only screen and (max-width: 200px) {
+                h1 {
+                  font-size: 50px;
+                }
+            }
+
+            span {
+                display: inline-block;
+            }
+
+            span.animate-in {
+                animation: textDisplay 100ms ease-in;
+                animation-fill-mode: forwards;
+            }
+
+            span:nth-child(1) {
+                color: #ff5555;
+            }
+
+            span:nth-child(2) {
+                color: #ffb86c;
+            }
+
+            span:nth-child(3) {
+                color: #f1fa8c;
+            }
+
+            span:nth-child(4) {
+                color: #50fa7b;
+            }
+
+            span:nth-child(5) {
+                color: #66d9ef;
+            }
+
+            span:nth-child(6) {
+                color: #bd93f9;
+            }
+
+            span:nth-child(7) {
+                color: #ff79c6;
+            }
+
+            span.minor-text {
+                display: block;
+                font-size: .2em;
+                letter-spacing: 0;
+            }
+
+            span.minor-text.animate-in {
+                animation: fadeInText 200ms ease-in;
+                animation-fill-mode: forwards;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>
+                <span>R</span>
+                <span>o</span>
+                <span>s</span>
+                <span>e</span>
+                <span>y</span>
+                <span class='minor-text'>
+                    💖 coming soon maybe? 💖
+                </span>
+            </h1>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var spans = document.getElementsByTagName('span');
+                Array.from(spans).forEach((element, index) => {
+                    element.style['animation-delay'] = index * 1000 / 3 + 'ms';
+                    element.style['transform'] = 'scale(0)';
+                    element.classList.add('animate-in');
+                });
+            });
+        </script>
+    </body>
+</html>
