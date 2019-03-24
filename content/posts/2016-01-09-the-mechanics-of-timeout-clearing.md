@@ -67,4 +67,4 @@ One thing I’m curious about is what is going on behind the scenes to make this
 
 ----
 
-Here’s a fun easter egg: `setTimeout` and `setInterval` use the same pool of IDs for timeouts so you can actually call `clearInterval` on a timeout ID and vice versa and it will still work. But obviously this would be a ridiculously weird thing to do and is not advised.
+🐰Here’s a fun easter egg: `setTimeout` and `setInterval` use the same pool of IDs for timeouts so you can actually call `clearInterval` on a timeout ID and vice versa and it will still work. But obviously this would be a ridiculously weird thing to do and is not advised.
