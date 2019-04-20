@@ -57,31 +57,3 @@
   }
 
 }
-
-@include breakpoint-md {
-  .content {
-    padding: 0;
-
-    &__title {
-      font-size: $typographic-base-font-size * 3;
-      @include line-height(2.25);
-      @include margin-top(2.25);
-      @include margin-bottom(1.5)
-    }
-
-    &__body {
-      font-size: $typographic-base-font-size * 1.125;
-      @include line-height(1.125);
-      @include margin-bottom(1.125);
-
-      & p {
-        font-size: $typographic-base-font-size * 1.125;
-        @include line-height(1.125);
-        @include margin-bottom(1.125)
-      }
-
-    }
-
-  }
-
-}

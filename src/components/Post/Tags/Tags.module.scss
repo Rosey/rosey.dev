@@ -18,16 +18,28 @@
         height: $button-height;
         padding: 0 24px;
         line-height: $button-height;
-        border: 1px solid $color-gray-border;
+        border: 1px solid;
         text-decoration: none;
         border-radius: $button-border-radius;
-        color: $color-base;
+        border-color: $color-light-base;
+        color: $color-light-base;
+
+        @media(prefers-color-scheme: dark) {
+          border-color: $color-gray-border;
+          color: $color-base;
+        }
 
         &:hover,
         &:focus {
+
+          @media(prefers-color-scheme: dark) {
+            background: $color-thirdary;
+             border-color: $color-thirdary;
+          }
+
           color: $body-background;
-          background: $color-thirdary;
-          border-color: $color-thirdary;
+          background: $color-light-thirdary;
+          border-color: $color-light-thirdary;
         }
 
       }

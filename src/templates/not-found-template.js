@@ -1,6 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
-import Sidebar from '../components/Sidebar';
+import { graphql, Link } from 'gatsby';
 import Layout from '../components/Layout';
 import Page from '../components/Page';
 
@@ -12,9 +11,12 @@ const NotFoundTemplate = ({ data }) => {
 
   return (
     <Layout title={`Not Found - ${title}`} description={subtitle}>
-      <Sidebar />
+      <div className={'home-button-wrapper'}>
+        <Link className={'home-button'} to="/">Home</Link>
+        <Link className={'home-button'} to="/blog">Blog</Link>
+      </div>
       <Page title="NOT FOUND">
-        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+        <p>You just hit a route that doesn&#39;t exist.</p>
       </Page>
     </Layout>
   );

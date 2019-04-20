@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC|Diplomata|Fascinate+Inline|Faster+One|Frijole|Titan+One|Wendy+One');
 @import "variables";
 @import "normalize-scss";
 @import "~katex/dist/katex.min.css";
@@ -27,8 +26,67 @@ http://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascr
 */
 
 body {
-  background: $body-background;
-}i
+  background: $body-light-background;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: $body-background;
+  }
+}
+
+
+  .home-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .home-button {
+    display: inline-block;
+    max-width: 90px;
+    height: $button-height;
+    padding: 0 24px;
+    line-height: $button-height;
+    text-align: center;
+    color: $color-light-base;
+    border: 1px solid $color-light-base;
+    border-radius: $button-border-radius;
+    font-size: $typographic-base-font-size;
+    font-weight: normal;
+    @include margin-top(1);
+    text-decoration: none;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    @media(prefers-color-scheme: dark) {
+      color: $color-base;
+      border: 1px solid $color-gray-border;
+    }
+
+    &:first-child {
+      margin-right: 20px;
+      margin-left: auto;
+    }
+
+    &:last-child {
+      margin-right: auto;
+    }
+
+    &:hover,
+    &:focus {
+      background: $color-light-primary;
+      border-color: $color-light-primary;
+
+      @media(prefers-color-scheme: dark) {
+        background: $color-primary;
+        border-color: $color-primary;
+      }
+      color: $body-background;
+    }
+
+  }
+
 
 pre::-webkit-scrollbar {
   width: 14px;
@@ -49,8 +107,7 @@ pre[class*="language-"] {
   color: #ccc;
   background: rgb(40, 41, 54);
   text-shadow: none;
-  font-family: PT Mono, Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
-    monospace;
+  font-family: "Fira Mono", monospace;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -111,6 +168,12 @@ pre[class*="language-"] {
   padding: 4px 7px;
   border-radius: 0.3em;
   white-space: normal;
+}
+
+@media (prefers-color-scheme: dark) {
+  :not(pre) > code[class*="language-"] {
+    color: #e2777a;
+  }
 }
 
 .limit-300

@@ -14,68 +14,6 @@
       @include line-height(1.5);
       @include margin-top(0);
       @include margin-bottom(.5);
-
-      &-link {
-        color: $color-base;
-
-        &:hover,
-        &:focus {
-          color: $color-base;
-          border-bottom: 1px solid $color-base;
-        }
-
-      }
-
     }
-
-    &-description {
-      font-size: $typographic-base-font-size;
-      @include line-height(1);
-      @include margin-bottom(.75);
-    }
-
-    &-meta {
-      &-time {
-        font-size: $typographic-small-font-size;
-        color: $color-base;
-        font-weight: 600;
-        text-transform: uppercase;
-      }
-
-      &-divider {
-        margin: 0 5px;
-      }
-
-      &-category {
-        &-link {
-          font-size: $typographic-small-font-size;
-          color: $color-secondary;
-          font-weight: 600;
-          text-transform: uppercase;
-
-          &:hover,
-          &:focus {
-            color: $color-primary;
-          }
-
-        }
-
-      }
-
-    }
-
-    &-readmore {
-      font-size: $typographic-base-font-size;
-      color: $color-primary;
-
-      &:hover,
-      &:focus {
-        color: $color-primary;
-        border-bottom: 1px solid $color-primary;
-      }
-
-    }
-
   }
-
 }

@@ -11,10 +11,9 @@ const PostTemplate = ({ data }) => {
 
   const {
     title: postTitle,
-    description: postDescription
   } = data.markdownRemark.frontmatter;
 
-  const metaDescription = postDescription !== null ? postDescription : siteSubtitle;
+  const metaDescription = siteSubtitle;
 
   return (
     <Layout title={`${postTitle} - ${siteTitle}`} description={metaDescription}>
@@ -33,7 +32,6 @@ export const query = graphql`
             twitter
           }
         }
-        disqusShortname
         subtitle
         title
         url
@@ -47,7 +45,6 @@ export const query = graphql`
       }
       frontmatter {
         date
-        description
         tags
         title
       }

@@ -8,6 +8,7 @@ const Layout = ({ children, title, description }) => (
       <html lang="en" />
       <title>{title}</title>
       <meta name="description" content={description} />
+      <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet"/>
     </Helmet>
     {children}
   </div>

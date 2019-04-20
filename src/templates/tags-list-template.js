@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import kebabCase from 'lodash/kebabCase';
 import Layout from '../components/Layout';
-import Sidebar from '../components/Sidebar';
 import Page from '../components/Page';
 
 const TagsListTemplate = ({ data }) => {
@@ -14,7 +13,10 @@ const TagsListTemplate = ({ data }) => {
 
   return (
     <Layout title={`Tags - ${title}`} description={subtitle}>
-      <Sidebar />
+      <div className={'home-button-wrapper'}>
+        <Link className={'home-button'} to="/">Home</Link>
+        <Link className={'home-button'} to="/blog">Blog</Link>
+      </div>
       <Page title="Tags">
         <ul>
           {group.map((tag) => (

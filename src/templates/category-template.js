@@ -1,7 +1,6 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import Layout from '../components/Layout';
-import Sidebar from '../components/Sidebar';
 import Feed from '../components/Feed';
 import Page from '../components/Page';
 import Pagination from '../components/Pagination';
@@ -26,7 +25,10 @@ const CategoryTemplate = ({ data, pageContext }) => {
 
   return (
     <Layout title={pageTitle} description={siteSubtitle}>
-      <Sidebar />
+      <div className={'home-button-wrapper'}>
+        <Link className={'home-button'} to="/">Home</Link>
+        <Link className={'home-button'} to="/blog">Blog</Link>
+      </div>
       <Page title={category}>
         <Feed edges={edges} />
         <Pagination
@@ -62,7 +64,6 @@ export const query = graphql`
           }
           frontmatter {
             date
-            description
             category
             title
           }
