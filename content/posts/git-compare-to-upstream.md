@@ -5,6 +5,7 @@ template: "post"
 draft: false
 slug: "/posts/git-worklow-compare-to-upstream/"
 category: "Code"
+description:
 tags:
   - "Git"
 ---
