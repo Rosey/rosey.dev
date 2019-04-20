@@ -2,6 +2,7 @@
 title: "Rose 😊"
 template: "page"
 slug: "index"
+description: ""
 ---
 
  <p>Hi. I am a developer. I feel like this site should be really cool to show off my developer skills but. It is not. Sorry.</p>
