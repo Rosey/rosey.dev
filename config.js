@@ -1,13 +1,13 @@
 'use strict';
 
 module.exports = {
-  url: 'https://rosey.dev',
+  url: 'https://www.rosey.dev',
   title: 'rosey',
   subtitle: '',
-  copyright: '© Rose Robertson.All rights reserved.',
+  copyright: '© Rose Robertson. All rights reserved.',
   disquddsShortname: '',
   postsPerPage: 4,
-  googleAnalyticsId: '',
+  googleAnalyticsId: 'UA-139157280-1',
   author: {
     name: 'Rose Robertson',
     photo: '/photo.jpg',
