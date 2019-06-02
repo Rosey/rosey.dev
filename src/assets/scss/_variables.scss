@@ -22,7 +22,7 @@ $color-gray-border: lighten($color-base, 77%);
 $color-gray-bg: lighten($color-base, 79%);
 
 // Typographic
-$typographic-font-family: "Fira Mono", monospace;
+$typographic-font-family: "Fira Mono", monospace, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
 
 $typographic-root-font-size: 100;
 $typographic-base-font-size: 16px;
