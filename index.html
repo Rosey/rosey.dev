@@ -35,11 +35,17 @@
 
             html {
                 font-size: 18px;
+                --main-background: #F8F8FF;
+                --main-text-color: #000032;
+                --main-light-text-color: #626080;
+                --main-border-color: #e9e9f2;
             }
 
             body {
                 background: #F8F8FF;
+                background: var(--main-background);
                 color: #000032;
+                color: var(--main-text-color);
                 margin: 0;
                 padding: 0;
                 line-height: 1.75;
@@ -154,6 +160,7 @@
                 align-items: center;
                 font-family: 'Merriweather', Georgia, 'Times New Roman', Times, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", serif;
                 color: #626080;
+                color: var(--main-light-text-color);
                 font-size: .75em;
             }
 
@@ -186,6 +193,7 @@
                 right: 0;
                 bottom: 0;
                 border: 1px solid #626080;
+                border: 1px solid var(--main-light-text-color);
                 -webkit-transition: .4s;
                 transition: .4s;
                 border-radius: 34px;
@@ -227,6 +235,7 @@
                 background: none;
                 border: none;
                 border-top: 1px solid #e9e9f2;
+                border-top: 1px solid var(--main-border-color);
                 margin: 30px auto;
                 width: 80%;
             }
@@ -285,10 +294,10 @@
 
         <form class="fun-mode-toggle-form" id="funModeToggle">
             <label for="funMode">
-                Fun Mode?
+                <ins>F</ins>un Mode?
             </label>
             <label class="switch">
-                <input type="checkbox" name="funMode" id="funMode" />
+                <input type="checkbox" accesskey="f" name="funMode" id="funMode" />
                 <span class="slider"></span>
             </label>
             <span class="easter-egg-hint">
@@ -352,7 +361,7 @@
                 });
 
                 document.addEventListener('keyup', function (e) {
-                    if (e.keyCode === 70) { // f
+                    if (e.keyCode === 70 && !e.ctrlKey && !e.altKey && !e.metaKey) { // f
                         var funModeInput = document.getElementById('funMode');
                         funModeInput.checked = !funModeInput.checked;
                         toggleFunMode(funModeInput);
