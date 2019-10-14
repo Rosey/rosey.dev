@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script async src="https://www.google-analytics.com/analytics.js"></script>
+        <title>rosey.dev</title>
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700&display=swap" rel="stylesheet">
+        <style>
+            @keyframes wiggle {
+                to {
+                    transform: translateX(-50px);
+                }
+            }
+
+            @keyframes jump-in {
+                from {
+                    transform: scale(0);
+                }
+
+                to {
+                    transform: scale(1);
+                }
+            }
+
+            html {
+                font-size: 18px;
+            }
+
+            body {
+                background: #F8F8FF;
+                color: #000032;
+                margin: 0;
+                padding: 0;
+                line-height: 1.75;
+                font-family: 'Merriweather', Georgia, 'Times New Roman', Times, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", serif;
+            }
+
+            body.fun-mode {
+                font-family: 'Comic Sans MS', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", serif;
+            }
+
+            body.fun-mode h1::after, body.fun-mode h2::after {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: block;
+                content: attr(data-text)attr(data-text);
+                color: rgba(255,255,255,0);
+                text-decoration: underline;
+                text-decoration-style: wavy;
+                text-decoration-color: rgba(255,67,164, .5);
+                text-decoration-skip: none;
+                text-decoration-skip-ink: none;
+                overflow: hidden;
+                white-space: nowrap;
+                animation: wiggle 3s linear infinite;
+            }
+
+            body.fun-mode h1, body.fun-mode h2 {
+                position: relative;
+                overflow: hidden;
+                width: -moz-fit-content;
+                width: -webkit-fit-content;
+                width: fit-content;
+            }
+
+            body.fun-mode ul {
+                list-style-type: circle;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            h2 {
+                font-size: 1.15em;
+            }
+
+            body.fun-mode a, body.fun-mode a:active {
+                color: rgba(255,67,164, 1);
+                text-decoration: none;
+            }
+
+            a {
+                color: blue;
+                position: relative;
+                text-decoration: underline;
+            }
+
+            a:active {
+                color: orangered;
+            }
+
+            body.fun-mode a:hover::after {
+                position: absolute;
+                top: -4px;
+                left: -18px;
+                right: -18px;
+                bottom: -4px;
+                background: url("brush-stroke-banner-6.svg");
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position: 0;
+                content: "";
+                display: block;
+                z-index: -1;
+                opacity: .7;
+            }
+
+            .main {
+                width: 95%;
+                max-width: 850px;
+                margin: 0 auto;
+                padding: 30px 50px;
+                box-sizing: border-box;
+            }
+
+            .title-image {
+                width: 450px;
+                height: auto;
+            }
+
+            .emoji {
+                position: relative;
+                top: 2px;
+                font-size: 1.5em;
+                line-height: 0;
+            }
+
+            .click-emoji {
+                animation: jump-in 75ms ease-in;
+                font-size: 2em;
+            }
+
+            .fun-mode-toggle-form {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                display: flex;
+                align-items: center;
+                font-family: 'Merriweather', Georgia, 'Times New Roman', Times, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", serif;
+                color: #626080;
+                font-size: .75em;
+            }
+
+            .fun-mode-toggle-form > label {
+                flex-shrink: 0;
+            }
+
+            .fun-mode-toggle-form > label:first-child {
+                margin-right: 10px;
+            }
+
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+            }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border: 1px solid #626080;
+                -webkit-transition: .4s;
+                transition: .4s;
+                border-radius: 34px;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: '😜';
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                -webkit-transition: .4s;
+                transition: .4s;
+                border-radius: 50%;
+                font-size: 25px;
+                line-height: 30px;
+            }
+
+            input:checked + .slider {
+                border: 1px solid rgba(255,67,164, 1);
+                background: rgba(255,67,164, 1);
+            }
+
+            input:focus + .slider {
+                box-shadow: 0 0 2px 1px rgba(255,67,164, 1);
+                border-color: rgba(255,67,164, 1);
+            }
+
+            input:checked + .slider:before {
+                transform: translateX(26px);
+            }
+
+            hr {
+                background: none;
+                border: none;
+                border-top: 1px solid #e9e9f2;
+                margin: 30px auto;
+                width: 80%;
+            }
+
+            body.fun-mode hr {
+                border-color: rgba(255,67,164, 1);
+            }
+        </style>
+    </head>
+    <body>
+        <section class="main">
+            <h1 data-text="Rosemarie Robertson">Rosemarie Robertson</h1>
+            <p>
+                Hello <span class="emoji">👩‍💻</span>
+                I am a software developer. Welcome <span class="emoji">🙂</span>
+            </p>
+            <hr>
+            <h2 data-text="Things to know about me">Things to know about me</h2>
+            <ul>
+                <li>I am a front end developer.</li>
+                <li>I work at <a href="https://getflow.com" target="_blank">Flow</a>.</li>
+                <li>I also manage the other developers who work at Flow.</li>
+                <li>We’re a very small team, so I still have plenty of time to just sit and write code, which I love <span class="emoji">❤️</span></li>
+                <li>I don’t have much free time to do dev work outside of my job.</li>
+                <li>I am a mom! I have a toddler… and I am pregnant, due December 2019. I also have a dog and a husband. My life is pretty busy.</li>
+            </ul>
+
+            <hr>
+
+            <h2 data-text="Other places you can find me">Other places you can find me</h2>
+            <ul>
+
+                <li>
+                    <a href="https://github.com/rosey" target="_blank">github/rosey</a>
+                </li>
+                <li>
+                    <a href="https://dev.to/rose" target="_blank">dev.to/rose</a>
+                </li>
+            </ul>
+        </section>
+
+        <form class="fun-mode-toggle-form" id="funModeToggle">
+            <label for="funMode">
+                Fun Mode?
+            </label>
+            <label class="switch">
+                <input type="checkbox" name="funMode" id="funMode" />
+                <span class="slider"></span>
+            </label>
+        </form>
+
+        <script>
+            var funMode = false;
+            var today = new Date();
+            var possibleEmoji = [
+                '🐹',
+                '🐢',
+                '🌼',
+                '🍉',
+                '🍾',
+                '🧸',
+                '💖',
+                '🎵',
+                '⭐️',
+                '🤓',
+                '🦄',
+                '🧚‍♀️'
+            ];
+
+            if (today.getMonth() === 9 && [31, 30, 29, 28].indexOf(today.getDate()) !== -1) {
+                possibleEmoji = [
+                    '👻',
+                    '🎃',
+                    '🧟‍♀️',
+                    '🧛‍♀️',
+                    '💀'
+                ];
+            }
+
+            if (today.getMonth() === 11 && [21, 22, 23, 24, 25, 26].indexOf(today.getDate()) !== -1) {
+                possibleEmoji = [
+                    '❄️',
+                    '🎅',
+                    '🎁',
+                    '🎄',
+                    '🤶'
+                ];
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                funMode = document.getElementsByName('funMode')[0].checked;
+                document.body.classList.toggle('fun-mode', funMode);
+
+                document.body.addEventListener('click', function (e) {
+                    if (funMode && !e.target.getAttribute("href") && e.target.parentNode.nodeName !== 'LABEL') {
+                        var randomNumber = Math.round(Math.random() * possibleEmoji.length);
+                        var span = document.createElement('span');
+                        span.textContent = possibleEmoji[randomNumber];
+                        span.className= 'emoji click-emoji';
+                        span.style.left = e.clientX + 'px';
+                        span.style.top = e.clientY + 'px';
+                        span.style.position = 'fixed';
+                        document.body.appendChild(span);
+                    }
+                });
+
+                document.getElementById('funModeToggle').addEventListener('change', function (e) {
+                    if (e.target.name === 'funMode') {
+                        funMode = e.target.checked;
+                        document.body.classList.toggle('fun-mode', funMode);
+                        var clickEmoji = document.getElementsByClassName('click-emoji');
+                        Array.from(clickEmoji).forEach(function (emoji) {
+                            document.body.removeChild(emoji);
+                        });
+                    }
+                });
+            });
+
+            if (true) {
+                (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            }
+            if (typeof ga === "function") {
+                ga('create', 'UA-139157280-1', 'auto', {});
+            }
+        </script>
+    </body>
+</html>
