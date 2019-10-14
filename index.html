@@ -7,6 +7,16 @@
         <title>rosey.dev</title>
         <link href="https://fonts.googleapis.com/css?family=Sniglet|Merriweather:400,400i,700&display=swap" rel="stylesheet">
         <style>
+            @keyframes fade-out {
+                from {
+                    opacity: 1;
+                }
+
+                to {
+                    opacity: 0;
+                }
+            }
+
             @keyframes wiggle {
                 to {
                     transform: translateX(-50px);
@@ -225,6 +235,20 @@
                 border-color: rgba(255,67,164, 1);
                 border-color: rgba(var(--accent), 1);
             }
+
+            .easter-egg-hint {
+                position: absolute;
+                bottom: -65px;
+                padding: 5px 10px;
+                color: black;
+                background: yellow;
+                display: none;
+            }
+
+            body.fun-mode .easter-egg-hint {
+                display: block;
+                animation: fade-out 400ms 5s ease-in forwards;
+            }
         </style>
     </head>
     <body>
@@ -267,6 +291,9 @@
                 <input type="checkbox" name="funMode" id="funMode" />
                 <span class="slider"></span>
             </label>
+            <span class="easter-egg-hint">
+                How many easter eggs can you find?
+            </span>
         </form>
 
         <script>
