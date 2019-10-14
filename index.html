@@ -38,6 +38,7 @@
 
             body.fun-mode {
                 font-family: 'Sniglet', 'Comic Sans MS', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", serif;
+                --accent: 255,67,164;
             }
 
             body.fun-mode h1::after, body.fun-mode h2::after {
@@ -50,6 +51,7 @@
                 text-decoration: underline;
                 text-decoration-style: wavy;
                 text-decoration-color: rgba(255,67,164, .5);
+                text-decoration-color: rgba(var(--accent), .5);
                 text-decoration-skip: none;
                 text-decoration-skip-ink: none;
                 overflow: hidden;
@@ -79,6 +81,7 @@
 
             body.fun-mode a, body.fun-mode a:active {
                 color: rgba(255,67,164, 1);
+                color: rgba(var(--accent), 1);
                 text-decoration: none;
             }
 
@@ -194,12 +197,16 @@
 
             input:checked + .slider {
                 border: 1px solid rgba(255,67,164, 1);
+                border: 1px solid rgba(var(--accent), 1);
                 background: rgba(255,67,164, 1);
+                background: rgba(var(--accent), 1);
             }
 
             input:focus + .slider {
                 box-shadow: 0 0 2px 1px rgba(255,67,164, 1);
                 border-color: rgba(255,67,164, 1);
+                box-shadow: 0 0 2px 1px rgba(var(--accent), 1);
+                border-color: rgba(var(--accent), 1);
             }
 
             input:checked + .slider:before {
@@ -216,6 +223,7 @@
 
             body.fun-mode hr {
                 border-color: rgba(255,67,164, 1);
+                border-color: rgba(var(--accent), 1);
             }
         </style>
     </head>
@@ -300,7 +308,7 @@
             }
 
             document.addEventListener('DOMContentLoaded', function () {
-                funMode = document.getElementsByName('funMode')[0].checked;
+                funMode = document.getElementById('funMode').checked;
                 document.body.classList.toggle('fun-mode', funMode);
 
                 document.body.addEventListener('click', function (e) {
@@ -316,15 +324,44 @@
                     }
                 });
 
-                document.getElementById('funModeToggle').addEventListener('change', function (e) {
-                    if (e.target.name === 'funMode') {
-                        funMode = e.target.checked;
+                document.addEventListener('keyup', function (e) {
+                    if (e.keyCode === 70) { // f
+                        var funModeInput = document.getElementById('funMode');
+                        funModeInput.checked = !funModeInput.checked;
+                        toggleFunMode(funModeInput);
+                    }
+
+                    if (funMode && e.keyCode === 80) { // p
+                        document.body.style.setProperty('--accent', '255,67,164');
+                    }
+
+                    if (funMode && e.keyCode === 79) { // o
+                        document.body.style.setProperty('--accent', '255,84,33');
+                    }
+
+                    if (funMode && e.keyCode === 66) { // b
+                        document.body.style.setProperty('--accent', '19,19,255');
+                    }
+
+                    if (funMode && e.keyCode === 71) { // g
+                        document.body.style.setProperty('--accent', '42,162,20');
+                    }
+                });
+
+                function toggleFunMode(element) {
+                    if (element.name === 'funMode') {
+                        funMode = element.checked;
                         document.body.classList.toggle('fun-mode', funMode);
                         var clickEmoji = document.getElementsByClassName('click-emoji');
                         Array.from(clickEmoji).forEach(function (emoji) {
                             document.body.removeChild(emoji);
                         });
                     }
+                }
+
+
+                document.getElementById('funModeToggle').addEventListener('change', function (e) {
+                    toggleFunMode(e.target);
                 });
             });
 
