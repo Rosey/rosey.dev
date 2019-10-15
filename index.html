@@ -381,7 +381,7 @@
                     if (funMode) {
                         var selection = document.getSelection();
                         var selectedText = selection ? selection.toString() : null;
-                        if (selectedText === 'Rosemarie') {
+                        if (selectedText === 'Rosemarie' || selectedText === 'Rose' || selectedText === 'Rosemarie Robertson') {
                             mainIntro.appendChild(profileImage);
                             if (ga) {
                                 ga('send', 'event', 'Show Profile Image', 'select');
@@ -396,7 +396,7 @@
                 });
 
                 document.body.addEventListener('click', function (e) {
-                    if (funMode && !e.target.getAttribute("href") && e.target.parentNode.nodeName !== 'LABEL') {
+                    if (funMode && !e.target.getAttribute("href") && e.target.parentNode.nodeName !== 'LABEL' && e.target.nodeName !== 'H1') {
                         var randomNumber = Math.round(Math.random() * possibleEmoji.length);
                         var span = document.createElement('span');
                         span.textContent = possibleEmoji[randomNumber];
