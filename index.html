@@ -271,6 +271,12 @@
                 display: none;
             }
 
+            .profile-pic {
+                width: 100%;
+                height: auto;
+                margin: 5px 0;
+            }
+
             body.fun-mode .easter-egg-hint {
                 display: block;
                 animation: fade-out 400ms 5s ease-in forwards;
@@ -280,7 +286,7 @@
     <body>
         <section class="main">
             <h1 data-text="Rosemarie Robertson">Rosemarie Robertson</h1>
-            <p>
+            <p id="main-intro">
                 Hello <span class="emoji">👩‍💻</span>
                 I am a software developer. Welcome <span class="emoji">🙂</span>
             </p>
@@ -328,6 +334,9 @@
             var totalEmojiAdded = 0;
             var emojiCleanEasterEggShown = false;
             var today = new Date();
+            var profileImage = document.createElement('img');
+            profileImage.setAttribute('src', './me-1.jpg');
+            profileImage.classList.add('profile-pic');
             var possibleEmoji = [
                 '🐹',
                 '🐢',
@@ -366,6 +375,25 @@
             document.addEventListener('DOMContentLoaded', function () {
                 funMode = document.getElementById('funMode').checked;
                 document.body.classList.toggle('fun-mode', funMode);
+                var mainIntro = document.getElementById('main-intro');
+
+                document.addEventListener('selectionchange', function() {
+                    if (funMode) {
+                        var selection = document.getSelection();
+                        var selectedText = selection ? selection.toString() : null;
+                        if (selectedText === 'Rosemarie') {
+                            mainIntro.appendChild(profileImage);
+                            if (ga) {
+                                ga('send', 'event', 'Show Profile Image', 'select');
+                            }
+                        } else if (profileImage.parentNode) {
+                            mainIntro.removeChild(profileImage);
+                            if (ga) {
+                                ga('send', 'event', 'Hide Profile Image', 'select');
+                            }
+                        }
+                    }
+                });
 
                 document.body.addEventListener('click', function (e) {
                     if (funMode && !e.target.getAttribute("href") && e.target.parentNode.nodeName !== 'LABEL') {
@@ -463,6 +491,10 @@
                         });
 
                         totalEmojiAdded = 0;
+
+                        if (profileImage.parentNode) {
+                            mainIntro.removeChild(profileImage);
+                        }
 
                         if (ga) {
                             ga('send', 'event', 'Toggle Fun Mode', 'click', element.checked ? 'on' : 'off');
