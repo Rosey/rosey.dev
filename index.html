@@ -325,6 +325,8 @@
 
         <script>
             var funMode = false;
+            var totalEmojiAdded = 0;
+            var emojiCleanEasterEggShown = false;
             var today = new Date();
             var possibleEmoji = [
                 '🐹',
@@ -375,9 +377,15 @@
                         span.style.top = e.clientY + 'px';
                         span.style.position = 'fixed';
                         document.body.appendChild(span);
+                        totalEmojiAdded++;
 
                         if (ga) {
                             ga('send', 'event', 'Add Emoji', 'click');
+                        }
+
+                        if (totalEmojiAdded === 15 && !emojiCleanEasterEggShown) {
+                            alert ('Hint: Close this box and hit the "c" key to clean up this emoji mess!');
+                            emojiCleanEasterEggShown = 0;
                         }
                     }
                 });
@@ -433,6 +441,9 @@
                             emoji.addEventListener('animationend', function () {
                                 document.body.removeChild(emoji);
                             });
+
+                            totalEmojiAdded = 0;
+                            emojiCleanEasterEggShown = true; // possibly hasn't actually been shown but they figured it out on their own so let's now show the tip.
                         });
 
                         if (ga) {
@@ -449,6 +460,8 @@
                         Array.from(clickEmoji).forEach(function (emoji) {
                             document.body.removeChild(emoji);
                         });
+
+                        totalEmojiAdded = 0;
 
                         if (ga) {
                             ga('send', 'event', 'Toggle Fun Mode', 'click', element.checked ? 'on' : 'off');
