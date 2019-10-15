@@ -8,6 +8,17 @@
         <title>rosey.dev</title>
         <link href="https://fonts.googleapis.com/css?family=Sniglet|Merriweather:400,400i,700&display=swap" rel="stylesheet">
         <style>
+
+            @keyframes fall-down {
+                from {
+                    transform: translateY(0);
+                }
+
+                to {
+                    transform: translateY(100vh);
+                }
+            }
+
             @keyframes fade-out {
                 from {
                     opacity: 1;
@@ -151,6 +162,11 @@
             .click-emoji {
                 animation: jump-in 75ms ease-in;
                 font-size: 2em;
+            }
+
+            .fall-down.click-emoji {
+                animation-name: fall-down;
+                animation-timing-function: ease-in;
             }
 
             .fun-mode-toggle-form {
@@ -383,6 +399,25 @@
 
                     if (funMode && e.keyCode === 71) { // g
                         document.body.style.setProperty('--accent', '42,162,20');
+                    }
+
+                    if (funMode && e.keyCode === 67) { // c
+                        var clickEmoji = document.getElementsByClassName('click-emoji');
+                        var totalEmoji = clickEmoji.length;
+                        Array.from(clickEmoji).forEach(function (emoji, index) {
+                            var maximumDelay = totalEmoji.length > 10 ? 1000 : 400;
+                            if (index === 0) {
+                                emoji.style['animation-delay'] = 0 + 'ms';
+                            } else {
+                                emoji.style['animation-delay'] = Math.round(Math.random() * maximumDelay) + 'ms';
+                            }
+
+                            emoji.style['animation-duration'] = Math.max(Math.round(Math.random() * 700), 100) + 'ms';
+                            emoji.classList.add('fall-down');
+                            emoji.addEventListener('animationend', function () {
+                                document.body.removeChild(emoji);
+                            });
+                        });
                     }
                 });
 
