@@ -262,13 +262,57 @@
                 border-color: rgba(var(--accent), 1);
             }
 
-            .easter-egg-hint {
-                position: absolute;
-                top: 45px;
+            #easter-egg-hint {
+                position: fixed;
+                top: 65px;
+                left: calc(100vw - 200px);
                 padding: 5px 10px;
-                color: black;
-                background: yellow;
+                width: 150px;
+                color: rgba(255,67,164, 1);
+                color: rgba(var(--accent), 1);
+                border: 1px solid rgba(255,67,164, .6);
+                border: 1px solid rgba(var(--accent), .6);
+                border-radius: 4px;
+                box-shadow: 0 0 2px 1px rgba(255,67,164, .3);
+                box-shadow: 0 0 2px 1px rgba(var(--accent), .3);
+                background: rgba(255,67,164, .05);
+                background: rgba(var(--accent), .05);
                 display: none;
+                font-family: 'Sniglet', 'Comic Sans MS', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", serif;
+            }
+
+            @media (max-width: 600px) {
+                #easter-egg-hint {
+                    display: none !important;
+                }
+            }
+
+            #progress {
+                pointer-events: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                border: none;
+                background: var(--main-border-color);
+                border-radius: 8px;
+                width: 100%;
+            }
+
+            #progress::-webkit-progress-bar {
+                background-color: transparent;
+            }
+
+            ::-webkit-progress-value
+            {
+                border-radius: 8px;
+                background: rgba(255,67,164, 1);
+                background: rgb(var(--accent));
+            }
+
+            ::-moz-progress-bar  {
+                border-radius: 8px;
+                background: rgba(255,67,164, 1);
+                background: rgb(var(--accent));
             }
 
             .profile-pic {
@@ -277,9 +321,25 @@
                 margin: 5px 0;
             }
 
-            body.fun-mode .easter-egg-hint {
+            body.fun-mode #easter-egg-hint {
                 display: block;
-                animation: fade-out 400ms 5s ease-in forwards;
+            }
+
+            body:not(.fun-mode) canvas {
+                display: none;
+            }
+
+            body.fun-mode canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 10;
+                pointer-events: none;
+                overflow-y: hidden;
+                overflow-x: hidden;
+                width: 100vw;
+                height: 100vh;
+                margin: 0;
             }
         </style>
     </head>
@@ -324,12 +384,127 @@
                 <input type="checkbox" accesskey="f" name="funMode" id="funMode" />
                 <span class="slider"></span>
             </label>
-            <span class="easter-egg-hint">
-                How many easter eggs can you find?
+            <span id="easter-egg-hint">
+                Easter egg hunt progress
+                <progress id="progress">
             </span>
         </form>
 
         <script>
+            var canvas = document.createElement('canvas');
+
+            function hideConfetti() {
+                if (canvas.parentElement) {
+                    canvas.parentElement.removeChild(canvas);
+                }
+            }
+
+            function showConfetti() {
+                var W = window.innerWidth;
+                var H = window.innerHeight;
+                var context = canvas.getContext("2d");
+                document.body.appendChild(canvas);
+                var maxConfettis = 150;
+                var particles = [];
+
+                var possibleColors = [
+                    "DodgerBlue",
+                    "OliveDrab",
+                    "Gold",
+                    "Pink",
+                    "SlateBlue",
+                    "LightBlue",
+                    "Gold",
+                    "Violet",
+                    "PaleGreen",
+                    "SteelBlue",
+                    "SandyBrown",
+                    "Chocolate",
+                    "Crimson"
+                ];
+
+                function randomFromTo(from, to) {
+                    return Math.floor(Math.random() * (to - from + 1) + from);
+                }
+
+                function confettiParticle() {
+                    this.x = Math.random() * W; // x
+                    this.y = Math.random() * H - H; // y
+                    this.r = randomFromTo(11, 33); // radius
+                    this.d = Math.random() * maxConfettis + 11;
+                    this.color =
+                        possibleColors[Math.floor(Math.random() * possibleColors.length)];
+                    this.tilt = Math.floor(Math.random() * 33) - 11;
+                    this.tiltAngleIncremental = Math.random() * 0.07 + 0.05;
+                    this.tiltAngle = 0;
+
+                    this.draw = function () {
+                        context.beginPath();
+                        context.lineWidth = this.r / 2;
+                        context.strokeStyle = this.color;
+                        context.moveTo(this.x + this.tilt + this.r / 3, this.y);
+                        context.lineTo(this.x + this.tilt, this.y + this.tilt + this.r / 5);
+                        return context.stroke();
+                    };
+                }
+
+                function Draw() {
+                    var results = [];
+
+                    // Magical recursive functional love
+                    requestAnimationFrame(Draw);
+
+                    context.clearRect(0, 0, W, window.innerHeight);
+
+                    for (var i = 0; i < maxConfettis; i++) {
+                        results.push(particles[i].draw());
+                    }
+
+                    var particle = {};
+                    var remainingFlakes = 0;
+                    for (var i = 0; i < maxConfettis; i++) {
+                        particle = particles[i];
+
+                        particle.tiltAngle += particle.tiltAngleIncremental;
+                        particle.y += (Math.cos(particle.d) + 3 + particle.r / 2) / 2;
+                        particle.tilt = Math.sin(particle.tiltAngle - i / 3) * 15;
+
+                        if (particle.y <= H) remainingFlakes++;
+
+                        // If a confetti has fluttered out of view,
+                        // bring it back to above the viewport and var if re-fall.
+                        if (particle.x > W + 30 || particle.x < -30 || particle.y > H) {
+                            particle.x = Math.random() * W;
+                            particle.y = -30;
+                            particle.tilt = Math.floor(Math.random() * 10) - 20;
+                        }
+                    }
+
+                    return results;
+                }
+
+                window.addEventListener(
+                    "resize",
+                    function () {
+                        W = window.innerWidth;
+                        H = window.innerHeight;
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
+                    },
+                    false
+                );
+
+                // Push new confetti objects to `particles[]`
+                for (var i = 0; i < maxConfettis; i++) {
+                    particles.push(new confettiParticle());
+                }
+
+                // Initialize
+                canvas.width = W;
+                canvas.height = H;
+                Draw();
+            }
+
             var funMode = false;
             var totalEmojiAdded = 0;
             var emojiCleanEasterEggShown = false;
@@ -376,6 +551,19 @@
                 funMode = document.getElementById('funMode').checked;
                 document.body.classList.toggle('fun-mode', funMode);
                 var mainIntro = document.getElementById('main-intro');
+                var foundEasterEggs = [];
+                var totalEasterEggs = 7;
+                var progressElement = document.getElementById('progress');
+                var easterEggHintElement = document.getElementById('easter-egg-hint');
+
+                progressElement.setAttribute('max', totalEasterEggs);
+                progressElement.setAttribute('value', 0);
+                function updateProgress(progress) {
+                    progressElement.setAttribute('value', progress);
+                    if (progress === totalEasterEggs) {
+                        showConfetti();
+                    }
+                }
 
                 document.addEventListener('selectionchange', function() {
                     if (funMode) {
@@ -383,6 +571,11 @@
                         var selectedText = selection ? selection.toString() : null;
                         if (selectedText === 'Rosemarie' || selectedText === 'Rose' || selectedText === 'Rosemarie Robertson') {
                             mainIntro.appendChild(profileImage);
+                            if (foundEasterEggs.indexOf('selection') === -1) {
+                                foundEasterEggs.push('selection');
+                                updateProgress(foundEasterEggs.length);
+                            }
+
                             if (ga) {
                                 ga('send', 'event', 'Show Profile Image', 'select');
                             }
@@ -396,7 +589,7 @@
                 });
 
                 document.body.addEventListener('click', function (e) {
-                    if (funMode && !e.target.getAttribute("href") && e.target.parentNode.nodeName !== 'LABEL' && e.target.nodeName !== 'H1') {
+                    if (funMode && !e.target.getAttribute("href") && e.target.parentNode.nodeName !== 'LABEL' && e.target.nodeName !== 'H1' && e.target.id !== 'easter-egg-hint') {
                         var randomNumber = Math.round(Math.random() * possibleEmoji.length);
                         var span = document.createElement('span');
                         span.textContent = possibleEmoji[randomNumber];
@@ -406,6 +599,11 @@
                         span.style.position = 'fixed';
                         document.body.appendChild(span);
                         totalEmojiAdded++;
+
+                        if (foundEasterEggs.indexOf('emoji') === -1) {
+                            foundEasterEggs.push('emoji');
+                            updateProgress(foundEasterEggs.length);
+                        }
 
                         if (ga) {
                             ga('send', 'event', 'Add Emoji', 'click');
@@ -428,6 +626,12 @@
 
                     if (funMode && e.keyCode === 80) { // p
                         document.body.style.setProperty('--accent', '255,67,164');
+
+                        if (foundEasterEggs.indexOf('pink') === -1) {
+                            foundEasterEggs.push('pink');
+                            updateProgress(foundEasterEggs.length);
+                        }
+
                         if (ga) {
                             ga('send', 'event', 'Set Accent', 'keyup', 'pink');
                         }
@@ -435,6 +639,12 @@
 
                     if (funMode && e.keyCode === 79) { // o
                         document.body.style.setProperty('--accent', '255,84,33');
+
+                        if (foundEasterEggs.indexOf('orange') === -1) {
+                            foundEasterEggs.push('orange');
+                            updateProgress(foundEasterEggs.length);
+                        }
+
                         if (ga) {
                             ga('send', 'event', 'Set Accent', 'keyup', 'orange');
                         }
@@ -442,6 +652,12 @@
 
                     if (funMode && e.keyCode === 66) { // b
                         document.body.style.setProperty('--accent', '19,19,255');
+
+                        if (foundEasterEggs.indexOf('blue') === -1) {
+                            foundEasterEggs.push('blue');
+                            updateProgress(foundEasterEggs.length);
+                        }
+
                         if (ga) {
                             ga('send', 'event', 'Set Accent', 'keyup', 'blue');
                         }
@@ -449,6 +665,12 @@
 
                     if (funMode && e.keyCode === 71) { // g
                         document.body.style.setProperty('--accent', '42,162,20');
+
+                        if (foundEasterEggs.indexOf('green') === -1) {
+                            foundEasterEggs.push('green');
+                            updateProgress(foundEasterEggs.length);
+                        }
+
                         if (ga) {
                             ga('send', 'event', 'Set Accent', 'keyup', 'green');
                         }
@@ -471,6 +693,11 @@
                                 document.body.removeChild(emoji);
                             });
 
+                            if (foundEasterEggs.indexOf('clean') === -1) {
+                                foundEasterEggs.push('clean');
+                                updateProgress(foundEasterEggs.length);
+                            }
+
                             totalEmojiAdded = 0;
                             emojiCleanEasterEggShown = true; // possibly hasn't actually been shown but they figured it out on their own so let's now show the tip.
                         });
@@ -489,6 +716,8 @@
                         Array.from(clickEmoji).forEach(function (emoji) {
                             document.body.removeChild(emoji);
                         });
+
+                        hideConfetti();
 
                         totalEmojiAdded = 0;
 
