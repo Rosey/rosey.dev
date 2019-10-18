@@ -563,6 +563,9 @@
                     progressElement.setAttribute('value', progress);
                     if (progress === totalEasterEggs) {
                         showConfetti();
+                        if (ga) {
+                            ga('send', 'event', 'Found all easter eggs');
+                        }
                     }
                 }
 
