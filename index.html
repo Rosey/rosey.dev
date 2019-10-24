@@ -393,10 +393,10 @@
                 <input type="checkbox" accesskey="f" name="funMode" id="funMode" />
                 <span class="slider"></span>
             </label>
-            <span id="easter-egg-hint">
+            <!-- <span id="easter-egg-hint">
                 Easter egg hunt progress
                 <progress id="progress">
-            </span>
+            </span> -->
         </form>
 
         <script>
@@ -554,15 +554,16 @@
                 var mainIntro = document.getElementById('main-intro');
                 var foundEasterEggs = [];
                 var totalEasterEggs = 7;
-                var progressElement = document.getElementById('progress');
-                var easterEggHintElement = document.getElementById('easter-egg-hint');
+                // var progressElement = document.getElementById('progress');
+                // var easterEggHintElement = document.getElementById('easter-egg-hint');
 
-                progressElement.setAttribute('max', totalEasterEggs);
-                progressElement.setAttribute('value', 0);
+                // progressElement.setAttribute('max', totalEasterEggs);
+                // progressElement.setAttribute('value', 0);
                 function updateProgress(progress) {
+                    return;
                     progressElement.setAttribute('value', progress);
                     if (progress === totalEasterEggs) {
-                        showConfetti();
+                        // showConfetti();
                         if (ga) {
                             ga('send', 'event', 'Found all easter eggs');
                         }
