@@ -3,103 +3,54 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="The personal site of Rose Robertson, Front end developer from Victoria, BC.">
+        <meta name="description" content="The personal site of Rose Robertson, software developer from Victoria, BC.">
         <title>rosey.dev</title>
-        <link href="https://fonts.googleapis.com/css?family=Sniglet|Merriweather:400,400i,700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
         <style>
-
-            @keyframes fall-down {
-                from {
-                    transform: translateY(0);
-                }
-
-                to {
-                    transform: translateY(100vh);
-                }
-            }
-
-            @keyframes fade-out {
-                from {
-                    opacity: 1;
-                }
-
-                to {
-                    opacity: 0;
-                }
-            }
-
-            @keyframes wiggle {
-                to {
-                    transform: translateX(-50px);
-                }
-            }
-
-            @keyframes jump-in {
-                from {
-                    transform: scale(0);
-                }
-
-                to {
-                    transform: scale(1);
-                }
-            }
-
             html {
                 font-size: 18px;
-                --main-background: #F8F8FF;
-                --main-text-color: #000032;
-                --main-light-text-color: #626080;
-                --main-border-color: #e9e9f2;
+                --main-background: #f4f4f4;
+                --main-text-color: #222;
+                --main-light-text-color: #222;
+                --main-border-color: #222;
+                --link-color: #e62ab4;
+                --active-link-color: #2a4de6;
+            }
+
+            @media (prefers-color-scheme: dark) { 
+                html {
+                    --main-background: rgb(28, 28, 46);
+                    --main-text-color: #f4f4f4;
+                    --main-light-text-color: #f4f4f4;
+                    --main-border-color: #f4f4f4;
+                    --link-color: #ff6dd8;
+                    --active-link-color: #5f7dff;
+                }
+            }
+
+            @media (max-width: 500px) { 
+                html {
+                    font-size: 14px;
+                }
             }
 
             body {
-                background: #F8F8FF;
+                background: #f4f4f4;
                 background: var(--main-background);
-                color: #000032;
+                color: #222;
                 color: var(--main-text-color);
                 margin: 0;
                 padding: 0;
-                line-height: 1.75;
-                font-family: 'Merriweather', Georgia, 'Times New Roman', Times, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", serif;
-            }
-
-            body.fun-mode {
-                font-family: 'Sniglet', 'Comic Sans MS', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", serif;
-                --accent: 255,67,164;
-            }
-
-            body.fun-mode h1::after, body.fun-mode h2::after {
-                position: absolute;
-                top: 0;
-                left: 0;
-                display: block;
-                content: attr(data-text)attr(data-text);
-                color: rgba(255,255,255,0);
-                text-decoration: underline;
-                text-decoration-style: wavy;
-                text-decoration-color: rgba(255,67,164, .5);
-                text-decoration-color: rgba(var(--accent), .5);
-                text-decoration-skip: none;
-                text-decoration-skip-ink: none;
-                overflow: hidden;
-                white-space: nowrap;
-                animation: wiggle 3s linear infinite;
-                z-index: -1;
-            }
-
-            body.fun-mode h1, body.fun-mode h2 {
-                position: relative;
-                overflow: hidden;
-                width: -moz-fit-content;
-                width: -webkit-fit-content;
-                width: fit-content;
-            }
-
-            body.fun-mode ul {
-                list-style-type: circle;
+                line-height: 1.6;
+                font-family: 'Lato', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
             }
 
             h1 {
+                font-size: 2em;
+                text-decoration: underline solid var(--main-text-color) .15em;
             }
 
             h2 {
@@ -107,54 +58,40 @@
             }
 
             ul ul {
-                padding-left: 1.2em;
-            }
-
-            body.fun-mode a, body.fun-mode a:active {
-                color: rgba(255,67,164, 1);
-                color: rgba(var(--accent), 1);
-                text-decoration: none;
+                padding-left: 1em;
             }
 
             a {
-                color: blue;
+                color: #e62ab4;
+                color: var(--link-color);
                 position: relative;
                 text-decoration: underline;
+                font-weight: 700;
             }
 
             a:active {
-                color: orangered;
-            }
-
-            body.fun-mode a:hover::after {
-                position: absolute;
-                top: -4px;
-                left: -18px;
-                right: -18px;
-                bottom: -4px;
-                background: url("brush-stroke-banner-6.svg");
-                background-size: 100%;
-                background-repeat: no-repeat;
-                background-position: 0;
-                content: "";
-                display: block;
-                z-index: -1;
-                opacity: 1;
+                color: #2a4de6;
+                color: var(--active-link-color);
             }
 
             .main {
                 width: 90%;
                 max-width: 750px;
-                margin: 0 auto;
-                padding: 30px 0;
+                margin: 0;
+                padding: 2.2em 4.4em;
                 box-sizing: border-box;
             }
 
-            .title-image {
-                width: 450px;
-                height: auto;
+            .indented-block {
+                padding-left: 2.2em;
             }
 
+            @media (max-width: 500px) {
+                .indented-block {
+                    padding-left: 0;
+                }
+            }
+    
             .emoji {
                 position: relative;
                 top: 2px;
@@ -166,189 +103,17 @@
                 font-size: .8em;
                 color: var(--main-light-text-color);
             }
-
-            .click-emoji {
-                animation: jump-in 75ms ease-in;
-                font-size: 2em;
-            }
-
-            .fall-down.click-emoji {
-                animation-name: fall-down;
-                animation-timing-function: ease-in;
-            }
-
-            .fun-mode-toggle-form {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                display: flex;
-                align-items: center;
-                font-family: 'Merriweather', Georgia, 'Times New Roman', Times, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", serif;
-                color: #626080;
-                color: var(--main-light-text-color);
-                font-size: .75em;
-            }
-
-            .fun-mode-toggle-form > label {
-                flex-shrink: 0;
-            }
-
-            .fun-mode-toggle-form > label:first-child {
-                margin-right: 10px;
-            }
-
-            .switch {
-                position: relative;
-                display: inline-block;
-                width: 60px;
-                height: 34px;
-            }
-
-            .switch input {
-                opacity: 0;
-                width: 0;
-                height: 0;
-            }
-
-            .slider {
-                position: absolute;
-                cursor: pointer;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                border: 1px solid #626080;
-                border: 1px solid var(--main-light-text-color);
-                -webkit-transition: .4s;
-                transition: .4s;
-                border-radius: 34px;
-            }
-
-            .slider:before {
-                position: absolute;
-                content: '😜\00a0';
-                height: 26px;
-                width: 26px;
-                left: 4px;
-                bottom: 4px;
-                -webkit-transition: .4s;
-                transition: .4s;
-                border-radius: 50%;
-                font-size: 25px;
-                line-height: 30px;
-            }
-
-            input:checked + .slider {
-                border: 1px solid rgba(255,67,164, 1);
-                border: 1px solid rgba(var(--accent), 1);
-                background: rgba(255,67,164, 1);
-                background: rgba(var(--accent), 1);
-            }
-
-            input:focus + .slider {
-                box-shadow: 0 0 2px 1px rgba(255,67,164, 1);
-                border-color: rgba(255,67,164, 1);
-                box-shadow: 0 0 2px 1px rgba(var(--accent), 1);
-                border-color: rgba(var(--accent), 1);
-            }
-
-            input:checked + .slider:before {
-                transform: translateX(26px);
-            }
-
+        
             hr {
                 background: none;
                 border: none;
-                border-top: 1px solid #e9e9f2;
-                border-top: 1px solid var(--main-border-color);
-                margin: 30px auto;
-                width: 80%;
-            }
-
-            body.fun-mode hr {
-                border-color: rgba(255,67,164, 1);
-                border-color: rgba(var(--accent), 1);
-            }
-
-            #easter-egg-hint {
-                position: fixed;
-                top: 65px;
-                left: calc(100vw - 200px);
-                padding: 5px 10px;
-                width: 150px;
-                color: rgba(255,67,164, 1);
-                color: rgba(var(--accent), 1);
-                border: 1px solid rgba(255,67,164, .6);
-                border: 1px solid rgba(var(--accent), .6);
-                border-radius: 4px;
-                box-shadow: 0 0 2px 1px rgba(255,67,164, .3);
-                box-shadow: 0 0 2px 1px rgba(var(--accent), .3);
-                background: rgba(255,67,164, .05);
-                background: rgba(var(--accent), .05);
-                display: none;
-                font-family: 'Sniglet', 'Comic Sans MS', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", serif;
-            }
-
-            @media (max-width: 600px) {
-                #easter-egg-hint {
-                    display: none !important;
-                }
-            }
-
-            #progress {
-                pointer-events: none;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                border: none;
-                background: var(--main-border-color);
-                border-radius: 8px;
+                border-top: .17em solid #e9e9f2;
+                border-top: .17em solid var(--main-border-color);
+                margin: 1.6em 0;
                 width: 100%;
             }
 
-            #progress::-webkit-progress-bar {
-                background-color: transparent;
-            }
 
-            ::-webkit-progress-value
-            {
-                border-radius: 8px;
-                background: rgba(255,67,164, 1);
-                background: rgb(var(--accent));
-            }
-
-            ::-moz-progress-bar  {
-                border-radius: 8px;
-                background: rgba(255,67,164, 1);
-                background: rgb(var(--accent));
-            }
-
-            .profile-pic {
-                width: 100%;
-                height: auto;
-                margin: 5px 0;
-            }
-
-            body.fun-mode #easter-egg-hint {
-                display: block;
-            }
-
-            body:not(.fun-mode) canvas {
-                display: none;
-            }
-
-            body.fun-mode canvas {
-                position: fixed;
-                top: 0;
-                left: 0;
-                z-index: 10;
-                pointer-events: none;
-                overflow-y: hidden;
-                overflow-x: hidden;
-                width: 100vw;
-                height: 100vh;
-                margin: 0;
-            }
         </style>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139157280-1"></script>
@@ -362,32 +127,34 @@
     </head>
     <body>
         <section class="main">
-            <h1 data-text="Rosemarie Robertson">Rosemarie Robertson</h1>
+            <h1 data-text="Rose Robertson">Rose Robertson</h1>
             <p id="main-intro">
                 Hello <span class="emoji" role="img" aria-label="woman technologist">👩‍💻</span>
-                I am a software developer and manager. Welcome <span class="emoji" role="img" aria-label="slightly smiling face">🙂</span>
+                I am a software developer and manager. Welcome <span class="emoji" role="img" aria-label="grinning face with big eyes">😃</span>
             </p>
             <hr>
-            <h2 data-text="Things to know about me">Things to know about me</h2>
-            <ul>
-                <li>I am currently a Development Manager at <a href="https://shopify.com" target="_blank" rel="noopener">Shopify</a></li>
-                <li>Previously:
-                    <ul>
-                        <li>Engineering Lead at <a href="https://getflow.com" target="_blank" rel="noopener">Flow</a> <span class="daterange">(2018-2020)</span></li>
-                        <li>Web Team Lead at <a href="https://getflow.com" target="_blank" rel="noopener">Flow</a> <span class="daterange">(2015-2018)</span></li>
-                        <li>Developer at <a href="https://getflow.com" target="_blank" rel="noopener">Flow</a> <span class="daterange">(2013-2015)</span></li>
-                        <li>Developer at <a href="https://getballpark.com" target="_blank" rel="noopener">Ballpark</a> <span class="daterange">(2012-2013)</span></li>
-                        <li>Junior Developer at <a href="https://atomiccrayon.com" target="_blank" rel="noopener">Atomic
-                                Crayon</a> <span class="daterange">(2011-2012)</span></li>
-                    </ul>
-                </li>
+            <div class="indented-block">
+                <h2 data-text="Things to know about me">Things to know about me</h2>
+                <ul>
+                    <li>I am currently a Development Manager at <a href="https://shopify.com" target="_blank" rel="noopener">Shopify</a> where I manage teams working on <a href="https://www.shopify.com/payments" target="_blank" rel="noopener">Payments</a> <span class="daterange">(2020-present)</span></li>
+                    <li>Previously:
+                        <ul>
+                            <li>Director of Engineering <a href="https://getflow.com" target="_blank" rel="noopener">Flow</a> <span class="daterange">(2018-2020)</span></li>
+                            <li>Team Lead at <a href="https://getflow.com" target="_blank" rel="noopener">Flow</a> <span class="daterange">(2015-2018)</span></li>
+                            <li>Developer at <a href="https://getflow.com" target="_blank" rel="noopener">Flow</a> <span class="daterange">(2013-2015)</span></li>
+                            <li>Developer at <a href="https://getballpark.com" target="_blank" rel="noopener">Ballpark</a> <span class="daterange">(2012-2013)</span></li>
+                            <li>Junior Developer at <a href="https://atomiccrayon.com" target="_blank" rel="noopener">Atomic
+                                    Crayon</a> <span class="daterange">(2011-2012)</span></li>
+                            <li>Intern Developer at <a href="https://bcparks.ca" target="_blank" rel="noopener">BC Parks</a> <span class="daterange">(2010)</span></li>
+                        </ul>
+                    </li>
 
-                <li>I studied Computer Systems Technology, a two year diploma program, at <a href="http://camosun.ca" target="_blank" rel="noopener">Camosun College</a> (2009-2011)</li>
-                <li>I was a hobbiest web developer throughout my teenaged years before deciding to pursue it as a career.</li>
-                <li>I really enjoy writing code. I’ve worked with various languages but front end is where I have the most experience.</li>
-                <li>I am a mom! I have two children. I also have a dog and a husband. My life is pretty busy.</li>
-                <li>I live in <a href="https://en.wikipedia.org/wiki/Victoria,_British_Columbia" target="_blank" rel="noopener">Victoria</a>, British Columbia, Canada <span class="emoji" role="img" aria-label="flag of Canada">🇨🇦</span></li>
-            </ul>
+                    <li>I studied Computer Systems Technology, a two year diploma program, at <a href="http://camosun.ca" target="_blank" rel="noopener">Camosun College</a> (2009-2011)</li>
+                    <li>I was a hobbiest web developer throughout my teen years before deciding to pursue it as a career.</li>
+                    <li>I am a mom! I have two children under the age of 5. I also have a dog and a husband. My life is pretty busy.</li>
+                    <li>I live in <a href="https://en.wikipedia.org/wiki/Victoria,_British_Columbia" target="_blank" rel="noopener">Victoria</a>, British Columbia, Canada <span class="emoji" role="img" aria-label="flag of Canada">🇨🇦</span></li>
+                </ul>
+            </div>
 
             <hr>
 
@@ -405,363 +172,5 @@
                 </li>
             </ul>
         </section>
-
-        <form class="fun-mode-toggle-form" id="funModeToggle">
-            <label for="funMode">
-                <ins>F</ins>un Mode?
-            </label>
-            <label class="switch">
-                <input type="checkbox" accesskey="f" name="funMode" id="funMode" />
-                <span class="slider"></span>
-            </label>
-            <!-- <span id="easter-egg-hint">
-                Easter egg hunt progress
-                <progress id="progress">
-            </span> -->
-        </form>
-
-        <script>
-            var canvas = document.createElement('canvas');
-
-            function hideConfetti() {
-                if (canvas.parentElement) {
-                    canvas.parentElement.removeChild(canvas);
-                }
-            }
-
-            function showConfetti() {
-                var W = window.innerWidth;
-                var H = window.innerHeight;
-                var context = canvas.getContext("2d");
-                document.body.appendChild(canvas);
-                var maxConfettis = 150;
-                var particles = [];
-
-                var possibleColors = [
-                    "rgba(255,67,164, 1)",
-                    "rgba(255,67,164, 1)",
-                    "rgba(255,84,33, 1)",
-                    "rgba(19,19,255, 1)",
-                    "rgba(42,162,20, 1)",
-                ];
-
-                function randomFromTo(from, to) {
-                    return Math.floor(Math.random() * (to - from + 1) + from);
-                }
-
-                function confettiParticle() {
-                    this.x = Math.random() * W; // x
-                    this.y = Math.random() * H - H; // y
-                    this.r = randomFromTo(11, 33); // radius
-                    this.d = Math.random() * maxConfettis + 11;
-                    this.color =
-                        possibleColors[Math.floor(Math.random() * possibleColors.length)];
-                    this.tilt = Math.floor(Math.random() * 33) - 11;
-                    this.tiltAngleIncremental = Math.random() * 0.07 + 0.05;
-                    this.tiltAngle = 0;
-
-                    this.draw = function () {
-                        context.beginPath();
-                        context.lineWidth = this.r / 2;
-                        context.strokeStyle = this.color;
-                        context.moveTo(this.x + this.tilt + this.r / 3, this.y);
-                        context.lineTo(this.x + this.tilt, this.y + this.tilt + this.r / 5);
-                        return context.stroke();
-                    };
-                }
-
-                function Draw() {
-                    var results = [];
-
-                    // Magical recursive functional love
-                    requestAnimationFrame(Draw);
-
-                    context.clearRect(0, 0, W, window.innerHeight);
-
-                    for (var i = 0; i < maxConfettis; i++) {
-                        results.push(particles[i].draw());
-                    }
-
-                    var particle = {};
-                    var remainingFlakes = 0;
-                    for (var i = 0; i < maxConfettis; i++) {
-                        particle = particles[i];
-
-                        particle.tiltAngle += particle.tiltAngleIncremental;
-                        particle.y += (Math.cos(particle.d) + 3 + particle.r / 2) / 2;
-                        particle.tilt = Math.sin(particle.tiltAngle - i / 3) * 15;
-
-                        if (particle.y <= H) remainingFlakes++;
-
-                        // If a confetti has fluttered out of view,
-                        // bring it back to above the viewport and var if re-fall.
-                        if (particle.x > W + 30 || particle.x < -30 || particle.y > H) {
-                            particle.x = Math.random() * W;
-                            particle.y = -30;
-                            particle.tilt = Math.floor(Math.random() * 10) - 20;
-                        }
-                    }
-
-                    return results;
-                }
-
-                window.addEventListener(
-                    "resize",
-                    function () {
-                        W = window.innerWidth;
-                        H = window.innerHeight;
-                        canvas.width = window.innerWidth;
-                        canvas.height = window.innerHeight;
-                    },
-                    false
-                );
-
-                // Push new confetti objects to `particles[]`
-                for (var i = 0; i < maxConfettis; i++) {
-                    particles.push(new confettiParticle());
-                }
-
-                // Initialize
-                canvas.width = W;
-                canvas.height = H;
-                Draw();
-            }
-
-            var funMode = false;
-            var totalEmojiAdded = 0;
-            var emojiCleanEasterEggShown = false;
-            var today = new Date();
-            var profileImage = document.createElement('img');
-            profileImage.setAttribute('src', './me-1.jpg');
-            profileImage.classList.add('profile-pic');
-            var possibleEmoji = [
-                '🐹',
-                '🐢',
-                '🌼',
-                '🍉',
-                '🍾',
-                '🧸',
-                '💖',
-                '🎵',
-                '⭐️',
-                '🤓',
-                '🦄',
-                '🧚‍♀️'
-            ];
-
-            if (today.getMonth() === 9 && [31, 30, 29, 28].indexOf(today.getDate()) !== -1) {
-                possibleEmoji = [
-                    '👻',
-                    '🎃',
-                    '🧟‍♀️',
-                    '🧛‍♀️',
-                    '💀'
-                ];
-            }
-
-            if (today.getMonth() === 11 && [21, 22, 23, 24, 25, 26].indexOf(today.getDate()) !== -1) {
-                possibleEmoji = [
-                    '❄️',
-                    '🎅',
-                    '🎁',
-                    '🎄',
-                    '🤶'
-                ];
-            }
-
-            document.addEventListener('DOMContentLoaded', function () {
-                funMode = document.getElementById('funMode').checked;
-                document.body.classList.toggle('fun-mode', funMode);
-                var mainIntro = document.getElementById('main-intro');
-                var foundEasterEggs = [];
-                var totalEasterEggs = 7;
-                // var progressElement = document.getElementById('progress');
-                // var easterEggHintElement = document.getElementById('easter-egg-hint');
-
-                // progressElement.setAttribute('max', totalEasterEggs);
-                // progressElement.setAttribute('value', 0);
-                function updateProgress(progress) {
-                    return;
-                    progressElement.setAttribute('value', progress);
-                    if (progress === totalEasterEggs) {
-                        // showConfetti();
-                        if (ga) {
-                            ga('send', 'event', 'Found all easter eggs');
-                        }
-                    }
-                }
-
-                document.addEventListener('selectionchange', function() {
-                    if (funMode) {
-                        var selection = document.getSelection();
-                        var selectedText = selection ? selection.toString() : null;
-                        if (selectedText === 'Rosemarie' || selectedText === 'Rose' || selectedText === 'Rosemarie Robertson') {
-                            mainIntro.appendChild(profileImage);
-                            if (foundEasterEggs.indexOf('selection') === -1) {
-                                foundEasterEggs.push('selection');
-                                updateProgress(foundEasterEggs.length);
-                            }
-
-                            if (ga) {
-                                ga('send', 'event', 'Show Profile Image', 'select');
-                            }
-                        } else if (profileImage.parentNode) {
-                            mainIntro.removeChild(profileImage);
-                            if (ga) {
-                                ga('send', 'event', 'Hide Profile Image', 'select');
-                            }
-                        }
-                    }
-                });
-
-                document.body.addEventListener('click', function (e) {
-                    if (funMode && !e.target.getAttribute("href") && e.target.parentNode.nodeName !== 'LABEL' && e.target.nodeName !== 'H1' && e.target.id !== 'easter-egg-hint') {
-                        var randomNumber = Math.round(Math.random() * possibleEmoji.length);
-                        var span = document.createElement('span');
-                        span.textContent = possibleEmoji[randomNumber];
-                        span.className= 'emoji click-emoji';
-                        span.style.left = e.clientX + 'px';
-                        span.style.top = e.clientY + 'px';
-                        span.style.position = 'fixed';
-                        document.body.appendChild(span);
-                        totalEmojiAdded++;
-
-                        if (foundEasterEggs.indexOf('emoji') === -1) {
-                            foundEasterEggs.push('emoji');
-                            updateProgress(foundEasterEggs.length);
-                        }
-
-                        if (ga) {
-                            ga('send', 'event', 'Add Emoji', 'click');
-                        }
-
-                        if (totalEmojiAdded === 15 && !emojiCleanEasterEggShown) {
-                           // todo - hiding for now. Would be good to have a mobile-friendly version of this too.
-                           // alert ('Hint: Close this box and hit the "c" key to clean up this emoji mess!');
-                            emojiCleanEasterEggShown = 0;
-                        }
-                    }
-                });
-
-                document.addEventListener('keyup', function (e) {
-                    if (e.keyCode === 70 && !e.ctrlKey && !e.altKey && !e.metaKey) { // f
-                        var funModeInput = document.getElementById('funMode');
-                        funModeInput.checked = !funModeInput.checked;
-                        toggleFunMode(funModeInput);
-                    }
-
-                    if (funMode && e.keyCode === 80) { // p
-                        document.body.style.setProperty('--accent', '255,67,164');
-
-                        if (foundEasterEggs.indexOf('pink') === -1) {
-                            foundEasterEggs.push('pink');
-                            updateProgress(foundEasterEggs.length);
-                        }
-
-                        if (ga) {
-                            ga('send', 'event', 'Set Accent', 'keyup', 'pink');
-                        }
-                    }
-
-                    if (funMode && e.keyCode === 79) { // o
-                        document.body.style.setProperty('--accent', '255,84,33');
-
-                        if (foundEasterEggs.indexOf('orange') === -1) {
-                            foundEasterEggs.push('orange');
-                            updateProgress(foundEasterEggs.length);
-                        }
-
-                        if (ga) {
-                            ga('send', 'event', 'Set Accent', 'keyup', 'orange');
-                        }
-                    }
-
-                    if (funMode && e.keyCode === 66) { // b
-                        document.body.style.setProperty('--accent', '19,19,255');
-
-                        if (foundEasterEggs.indexOf('blue') === -1) {
-                            foundEasterEggs.push('blue');
-                            updateProgress(foundEasterEggs.length);
-                        }
-
-                        if (ga) {
-                            ga('send', 'event', 'Set Accent', 'keyup', 'blue');
-                        }
-                    }
-
-                    if (funMode && e.keyCode === 71) { // g
-                        document.body.style.setProperty('--accent', '42,162,20');
-
-                        if (foundEasterEggs.indexOf('green') === -1) {
-                            foundEasterEggs.push('green');
-                            updateProgress(foundEasterEggs.length);
-                        }
-
-                        if (ga) {
-                            ga('send', 'event', 'Set Accent', 'keyup', 'green');
-                        }
-                    }
-
-                    if (funMode && e.keyCode === 67) { // c
-                        var clickEmoji = document.getElementsByClassName('click-emoji');
-                        var totalEmoji = clickEmoji.length;
-                        Array.from(clickEmoji).forEach(function (emoji, index) {
-                            var maximumDelay = totalEmoji.length > 10 ? 1000 : 400;
-                            if (index === 0) {
-                                emoji.style['animation-delay'] = 0 + 'ms';
-                            } else {
-                                emoji.style['animation-delay'] = Math.round(Math.random() * maximumDelay) + 'ms';
-                            }
-
-                            emoji.style['animation-duration'] = Math.max(Math.round(Math.random() * 700), 100) + 'ms';
-                            emoji.classList.add('fall-down');
-                            emoji.addEventListener('animationend', function () {
-                                document.body.removeChild(emoji);
-                            });
-
-                            if (foundEasterEggs.indexOf('clean') === -1) {
-                                foundEasterEggs.push('clean');
-                                updateProgress(foundEasterEggs.length);
-                            }
-
-                            totalEmojiAdded = 0;
-                            emojiCleanEasterEggShown = true; // possibly hasn't actually been shown but they figured it out on their own so let's now show the tip.
-                        });
-
-                        if (ga) {
-                            ga('send', 'event', 'Clean Emoji');
-                        }
-                    }
-                });
-
-                function toggleFunMode(element) {
-                    if (element.name === 'funMode') {
-                        funMode = element.checked;
-                        document.body.classList.toggle('fun-mode', funMode);
-                        var clickEmoji = document.getElementsByClassName('click-emoji');
-                        Array.from(clickEmoji).forEach(function (emoji) {
-                            document.body.removeChild(emoji);
-                        });
-
-                        hideConfetti();
-
-                        totalEmojiAdded = 0;
-
-                        if (profileImage.parentNode) {
-                            mainIntro.removeChild(profileImage);
-                        }
-
-                        if (ga) {
-                            ga('send', 'event', 'Toggle Fun Mode', 'click', element.checked ? 'on' : 'off');
-                        }
-                    }
-                }
-
-
-                document.getElementById('funModeToggle').addEventListener('change', function (e) {
-                    toggleFunMode(e.target);
-                });
-            });
-        </script>
     </body>
 </html>
