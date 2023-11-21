@@ -20,7 +20,7 @@
                 --active-link-color: #2a4de6;
             }
 
-            /* @media (prefers-color-scheme: dark) {
+            @media (prefers-color-scheme: dark) {
                 html {
                     --main-background: rgb(15, 15, 30);
                     --main-text-color: #f4f4f4;
@@ -29,7 +29,7 @@
                     --link-color: #ff6dd8;
                     --active-link-color: #5f7dff;
                 }
-            } */
+            }
 
             @media (max-width: 500px) {
                 html {
@@ -75,10 +75,14 @@
 
             .main {
                 width: 90%;
-                max-width: 750px;
+                max-width: 950px;
                 margin: 0;
                 padding: 2.2em 4.4em;
                 box-sizing: border-box;
+            }
+
+            .main-intro {
+                font-size: 1.3em;
             }
 
             .indented-block {
@@ -110,6 +114,7 @@
                 border-top: .1em solid var(--main-border-color);
                 margin: 1.6em 0;
                 width: 100%;
+                opacity: 0.2;
             }
 
 
@@ -127,7 +132,7 @@
     <body>
         <section class="main">
             <h1 data-text="Rose Robertson">Rose Robertson</h1>
-            <p id="main-intro">
+            <p id="main-intro" class="main-intro">
                 Hello <span class="emoji" role="img" aria-label="woman technologist">👩‍💻</span>
                 I am a software developer and manager.
             </p>
@@ -135,22 +140,22 @@
 
             <h2 data-text="Things to know about me">Things to know about me</h2>
             <ul>
-                <li>I am currently a <strong>Development Manager</strong> at <a href="https://shopify.com" target="_blank" rel="noopener">Shopify</a> where I manage teams working on <a href="https://www.shopify.com/payments" target="_blank" rel="noopener">Payments</a>. It's fun! I do a lot of people management here as I have a large team, but also have the chance to jump in and write a bit of Ruby on occasion/do code review as well. <span class="daterange">(2020-present)</span></li>
+                <li>I am currently a <strong>Development Manager</strong> at <a href="https://shopify.com" target="_blank" rel="noopener">Shopify</a> where I manage a team working on <a href="https://www.shopify.com/payments" target="_blank" rel="noopener">Shopify Payments</a>. It's fun! The role varies - running a team and managing a group of awesome developers... but I also have the chance to jump in and write a bit of Ruby on occasion/do code review as well. <span class="daterange">(2020-present)</span></li>
                 <li>Previously:
                     <ul>
-                        <li><span class="daterange">(2018-2020)</span> <strong>Director of Engineering</strong> <a href="https://getflow.com" target="_blank" rel="noopener">Flow</a> - Don't be fooled by the fancy title, it's a small company. Managed two front end devs and two back end devs. Also acted as front end technical lead and did IC (individual contributor) work.</li>
+                        <li><span class="daterange">(2018-2020)</span> <strong>Director of Engineering</strong> <a href="https://getflow.com" target="_blank" rel="noopener">Flow</a> - This title always seemed a bit silly to me - it's a small company. I was more like a manager.</li>
                         <li><span class="daterange">(2015-2018)</span> <strong>Team Lead</strong> at <a href="https://getflow.com" target="_blank" rel="noopener">Flow</a> - People management/technical leadership/IC work writing JavaScript</li>
                         <li><span class="daterange">(2013-2015)</span> <strong>Developer</strong> at <a href="https://getflow.com" target="_blank" rel="noopener">Flow</a> - JavaScript (react, backbone, webpack, redux) - Flow is a single page web app so it was very front end heavy.</li>
-                        <li><span class="daterange">(2012-2013)</span> <strong>Developer</strong> at <a href="https://getballpark.com" target="_blank" rel="noopener">Ballpark</a> - Small team, rails app, I was the only front end dev. Lots of JavaScript, HTML and CSS. A bit of Ruby but not much. I probably made a huge mess as I was still very junior!</li>
+                        <li><span class="daterange">(2012-2013)</span> <strong>Developer</strong> at <a href="https://getballpark.com" target="_blank" rel="noopener">Ballpark</a> - Small team, rails app, I was the only front end dev. Lots of JavaScript, HTML and CSS.</li>
                         <li><span class="daterange">(2011-2012)</span> <strong>Junior Developer</strong> at <a href="https://atomiccrayon.com" target="_blank" rel="noopener">Atomic
-                                Crayon</a> - C# with ASP.NET, some PHP. Lots of random client work making small websites and apps.</li>
+                                Crayon</a> - C# with ASP.NET, some PHP. Doing work for clients - making websites and apps.</li>
                         <li><span class="daterange">(2010)</span> <strong>Intern Developer</strong> at <a href="https://bcparks.ca" target="_blank" rel="noopener">BC Parks</a> - Front end work on the BC Parks website.</li>
                     </ul>
                 </li>
 
                 <li>I studied Computer Systems Technology, a two year diploma program, at <a href="http://camosun.ca" target="_blank" rel="noopener">Camosun College</a> (2009-2011)</li>
                 <li>I was a hobbiest web developer/small app developer throughout my teen years before deciding to pursue a career in software.</li>
-                <li>I am a mom! I have two young children. I also have a dog and a partner. My life is pretty busy.</li>
+                <li>I am a mom! I have two kids. I also have a dog and a partner. My life is pretty busy.</li>
                 <li>I live in <a href="https://en.wikipedia.org/wiki/Victoria,_British_Columbia" target="_blank" rel="noopener">Victoria</a>, British Columbia, Canada <span class="emoji" role="img" aria-label="flag of Canada">🇨🇦</span></li>
             </ul>
 
@@ -159,14 +164,9 @@
 
             <h2 data-text="Other places you can find me">Other places you can find me</h2>
             <ul>
-
                 <li>
                     <a href="https://github.com/rosey" target="_blank" rel="noopener">github/rosey</a>
                 </li>
-                <li>
-                    <a href="https://dev.to/rose" target="_blank" rel="noopener">dev.to/rose</a>
-                </li>
-
                 <li>
                     <a href="mailto:rose@rosey.dev" rel="noopener">rose@rosey.dev</a>
                 </li>
