@@ -18,6 +18,7 @@
                 --main-border-color: #222;
                 --link-color: #e62ab4;
                 --active-link-color: #2a4de6;
+                --hover-link-color: #f5bb00;
             }
 
             @media (prefers-color-scheme: dark) {
@@ -28,6 +29,7 @@
                     --main-border-color: #f4f4f4;
                     --link-color: #ff6dd8;
                     --active-link-color: #5f7dff;
+                    --hover-link-color: #fdeb84;
                 }
             }
 
@@ -71,6 +73,11 @@
             a:active {
                 color: #2a4de6;
                 color: var(--active-link-color);
+            }
+
+            a:hover {
+                color: #f5bb00;
+                color: var(--hover-link-color);
             }
 
             .main {
